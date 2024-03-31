@@ -41,3 +41,7 @@ with open(last_prediction_file_path, 'w') as last_prediction_file:
     
     for emo, sc in last_score_dict.items():
         last_prediction_file.write(f"{emo}: {sc:.2f}\n")
+# Print message indicating file write completion
+
+print(f"Predictions history saved to: {history_file_path}")
+print(f"Last prediction saved to: {last_prediction_file_path}")
