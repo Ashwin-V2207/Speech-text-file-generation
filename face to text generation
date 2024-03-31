@@ -1,0 +1,18 @@
+# Save the results to the compiled_output.txt file with a timestamp
+compiled_output_filename = "compiled_output.txt"
+with open(compiled_output_filename, "a") as file:
+    file.write("\n\nResults at {}: \n".format(timestamp))
+
+    file.write("Mean Emotion Scores: [")
+    file.write(" ".join(f"{score:.4f} ({label})" for score, label in zip(mean_emotion_scores, emotion_labels)))
+    file.write("]\n")
+
+    file.write("Standard Deviation of Emotion Scores: [")
+    file.write(" ".join(f"{score:.4f} ({label})" for score, label in zip(std_dev_emotion_scores, emotion_labels)))
+    file.write("]\n")
+
+    file.write("Most Detected Emotion: {}\n".format(most_detected_emotion))
+
+    # Write the number of frames recognized for each emotion
+    for label, count in emotion_frame_counts.items():
+        file.write(f"Frames Recognized ({label}): {count}\n")
