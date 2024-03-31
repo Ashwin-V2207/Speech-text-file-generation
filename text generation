@@ -1,0 +1,43 @@
+# Define file paths for storing history and last prediction
+
+history_file_path = 'D:\Final Project\Speech\predictions_history.txt'
+last_prediction_file_path = 'D:\Final Project\Speech\last_prediction.txt'
+
+# Write predictions history to file
+
+with open(history_file_path, 'a') as history_file:
+    
+    # Iterate over predictions
+    
+    for emotion, score, all_scores in zip(predicted_emotions, confidence_scores, predictions):
+        score_dict = {emotion: score for emotion, score in zip(all_emotions, all_scores)}
+        
+        # Write predicted emotion to the file
+        
+        history_file.write(f"Predicted Emotion: {emotion}\n")
+        
+        # Write confidence scores for all emotions to the file
+        
+        for emo, sc in score_dict.items():
+            history_file.write(f"{emo}: {sc:.2f}\n")
+        
+        # Write a newline to separate predictions
+        history_file.write('\n')
+
+# Write last prediction to file (overwriting previous content)
+
+with open(last_prediction_file_path, 'w') as last_prediction_file:
+    
+    # Get the last prediction
+    
+    last_prediction = predicted_emotions[-1]
+    last_score_dict = {emotion: score for emotion, score in zip(all_emotions, predictions[-1])}
+    
+    # Write predicted emotion to the file
+    
+    last_prediction_file.write(f"Last Predicted Emotion: {last_prediction}\n")
+    
+    # Write confidence scores for all emotions to the file
+    
+    for emo, sc in last_score_dict.items():
+        last_prediction_file.write(f"{emo}: {sc:.2f}\n")
