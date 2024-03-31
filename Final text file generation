@@ -1,0 +1,19 @@
+def read_values(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        values = [float(value) for line in lines for value in line.split()]
+    return values
+
+def calculate_average(values1, values2):
+    averages = [(val1 + val2) / 2 for val1, val2 in zip(values1, values2)]
+    return averages
+
+file1_path = 'D:\Final Project\Text\Face op.txt'  
+file2_path = 'D:\Final Project\Text\Speech op.txt'  
+
+values1 = read_values(file1_path)
+values2 = read_values(file2_path)
+
+averages = calculate_average(values1, values2)
+
+print(' '.join(map(str, averages)))
